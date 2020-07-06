@@ -17,9 +17,8 @@ namespace instagram_authorization.Controllers
 
         public string InstagramLLT(string shortLivedToken)
         {
-            var str= _configuration["InstagramApiKey:Key"];
+            // TODO
             return  _configuration["InstagramApiKey:Key"];
-
         }
     }
 }
