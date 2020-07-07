@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using instagram_authorization.Filter;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
 
 namespace instagram_authorization.Controllers
 {
+    [ApiAuthorization]
     [ApiController]
     [Route("[controller]")]
     public class InstagramLLTController : ControllerBase//instagram long-lived token
@@ -18,7 +21,7 @@ namespace instagram_authorization.Controllers
         public string InstagramLLT(string shortLivedToken)
         {
             // TODO
-            return  _configuration["InstagramApiKey:Key"];
+            return _configuration["InstagramApiKey:Key"];
         }
     }
 }
