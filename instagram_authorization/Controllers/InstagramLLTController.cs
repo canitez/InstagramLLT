@@ -1,8 +1,10 @@
 ﻿using instagram_authorization.Filter;
+using instagram_authorization.Parser;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Threading.Tasks;
 
 namespace instagram_authorization.Controllers
 {
@@ -11,17 +13,19 @@ namespace instagram_authorization.Controllers
     [Route("[controller]")]
     public class InstagramLLTController : ControllerBase//instagram long-lived token
     {
-        private readonly IConfiguration _configuration;
+        private readonly IInstagramTokenParser _parser;
 
-        public InstagramLLTController(IConfiguration configuration)
+        //readonly new InstagramTokenParser parser;
+
+        public InstagramLLTController(IInstagramTokenParser parser)
         {
-            _configuration = configuration;
+            _parser = parser;
         }
 
-        public string InstagramLLT(string shortLivedToken)
+        [HttpPost]
+        public async Task<string> InstagramLLT([FromBody]string shortLivedToken)
         {
-            // TODO
-            return _configuration["InstagramApiKey:Key"];
+            return await _parser.TokenParser(shortLivedToken);
         }
     }
 }
