@@ -23,9 +23,9 @@ namespace instagram_authorization.Controllers
         }
 
         [HttpPost]
-        public async Task<string> InstagramLLT([FromBody]string shortLivedToken)
+        public async Task<string> InstagramLLT([FromBody]string instagramKey)
         {
-            return await _parser.TokenParser(shortLivedToken);
+            return await _parser.TokenParser(instagramKey);
         }
     }
 }
